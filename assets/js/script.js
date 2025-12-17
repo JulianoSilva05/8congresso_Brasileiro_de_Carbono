@@ -40,3 +40,67 @@ document.addEventListener("DOMContentLoaded", function(){
    }
 });
 
+// Formulário de contato com envio direto para e-mail (sem abrir cliente)
+document.addEventListener("DOMContentLoaded", function(){
+  var form = document.getElementById('contactForm');
+  var feedback = document.getElementById('contactFeedback');
+  var submitBtn = form ? form.querySelector('button[type=\"submit\"]') : null;
+  var endpoint = 'https://formsubmit.co/ajax/julianoqm@gmail.com';
+  if(!form) return;
+
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+    feedback.textContent = '';
+    feedback.style.color = '#0b4f1d';
+
+    var nome = form.nome.value.trim();
+    var email = form.email.value.trim();
+    var assunto = form.assunto.value.trim();
+    var mensagem = form.mensagem.value.trim();
+
+    if(!nome || !email || !assunto || !mensagem){
+      feedback.textContent = 'Preencha todos os campos para enviar sua mensagem.';
+      feedback.style.color = '#b00020';
+      return;
+    }
+
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+    }
+
+    var payload = {
+      nome: nome,
+      email: email,
+      assunto: assunto,
+      mensagem: mensagem,
+      _subject: 'Contato Carbono 2019 - ' + assunto
+    };
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(function(response){
+      if(!response.ok){
+        throw new Error('Erro ao enviar mensagem. Tente novamente.');
+      }
+      return response.json();
+    }).then(function(){
+      feedback.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+      feedback.style.color = '#0b4f1d';
+      form.reset();
+    }).catch(function(){
+      feedback.textContent = 'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
+      feedback.style.color = '#b00020';
+    }).finally(function(){
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensagem';
+      }
+    });
+  });
+});
