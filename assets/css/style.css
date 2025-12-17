@@ -1,25 +1,87 @@
+:root {
+	--green: #004213;
+	--green-strong: #013c12;
+	--green-soft: #e8f4ec;
+	--text: #0d1f17;
+	--muted: rgba(255, 255, 255, 0.75);
+}
+
 * {
 	margin:0;
 	padding: 0;
-	font-family: arial;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Montserrat', Arial, sans-serif;
+	background: radial-gradient(circle at 10% 20%, rgba(0, 66, 19, 0.08), transparent 25%), radial-gradient(circle at 90% 10%, rgba(0, 66, 19, 0.06), transparent 22%), #f9fbf9;
+	color: var(--text);
+}
+
+a {
+	color: inherit;
 }
 
 /*MENU */
 
 .navbar {
-	border-bottom:1px solid rgb(255,255,255,0.5);
+	background: linear-gradient(135deg, rgba(0, 66, 19, 0.92), rgba(0, 66, 19, 0.8));
+	border-bottom:1px solid rgba(255,255,255,0.3);
+	backdrop-filter: blur(6px);
+	transition: background-color .3s ease, box-shadow .3s ease;
 }
 .navbar2 {
-	background-color:#004213;
-	border-bottom:1px solid rgb(255,255,255,0.5);
+	background: #ffffff;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.navbar2 .nav-link,
+.navbar2 .navbar-brand {
+	color: var(--green) !important;
+}
+.navbar2 .navbar-toggler {
+	border-color: rgba(0,66,19,0.4);
+}
+.navbar2 .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0,66,19,0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 .navaBrand {
-	color:rgb(255,255,255,0.5);
+	color:var(--muted);
 	font-size:20px; 
+	font-weight:700;
+	letter-spacing: 1px;
 }
-
 .navbar-nav {
 	line-height:40px; 
+} 
+.navbar .nav-link {
+	color: var(--muted);
+	font-weight: 500;
+	margin-left: 12px;
+	position: relative;
+}
+.navbar .nav-link::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 8px;
+	width: 100%;
+	height: 2px;
+	background: rgba(255,255,255,0.6);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform .2s ease;
+}
+.navbar .nav-link:hover::after {
+	transform: scaleX(1);
+}
+
+/*GLOBAL SPACING*/
+section {
+	padding: 80px 0;
 } 
 
 
@@ -30,62 +92,103 @@ header {
 	background-image: url(../images/bg.jpg);
 	background-size: cover ;
 	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+}
+
+header::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(120deg, rgba(0, 66, 19, 0.75), rgba(0, 66, 19, 0.45));
+}
+
+header .container {
+	position: relative;
+	z-index: 2;
 
 }
-header img {
-	width:700px; 
-	margin-top:100px; 
-}
-header h2 {
-	font-size: 20px;
-	text-align: center;
-	color:rgb(255,255,255,0.7); 
-	font-weight: normal; 
-}
 .banner {
-	min-height:761px;	
+	min-height: 100vh;
+	padding-top: 160px;
+	padding-bottom: 100px;
+}
+.hero-logo {
+	max-width: 520px;
+	width: 100%; 
+	margin-top:40px;
+	filter: drop-shadow(0 25px 35px rgba(0,0,0,0.25));
+}
+.hero-card {
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 20px;
+	padding: 32px;
+	border: 1px solid rgba(255,255,255,0.25);
+	backdrop-filter: blur(8px);
+}
+.hero-card h1 {
+	font-size: 34px;
+	color: var(--green);
+	margin-bottom: 14px;
+	font-weight: 700;
+}
+.hero-card p {
+	color: #123625;
+	line-height: 1.6;
+	margin-bottom: 12px;
 }
 .btn-sobre {
 	text-align: center;
-	background-color: #004213;
-	border-radius: 30px;
-	width:250px;
+	background-color: var(--green);
+	border-radius: 40px;
+	width: 100%;
+	max-width: 280px;
 	height:55px;
 	line-height:55px;
-	font-weight: bold;
+	font-weight: 700;
 	color: #e0e0e0;
 	font-size:15px; 
 	margin: auto;
-	margin-top: 30px;
+	text-transform: uppercase;
+	letter-spacing: .5px;
+	transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+	box-shadow: 0 15px 35px rgba(0, 66, 19, 0.25);
+}
+.btn-sobre:hover {
+	transform: translateY(-1px);
+	background-color: #026723;
+	box-shadow: 0 20px 45px rgba(0, 66, 19, 0.35);
 }
 
 
 /*SOBRE*/
 
 .sobre {
-	background-color: #004213;
-	padding: 5px; 
+	background: linear-gradient(180deg, #004213 0%, #013917 100%);
 }
 .sobreTitle {
 	text-align: center;
-	color:rgb(255,255,255,0.8); 
-	margin-top:80px; 
+	color:var(--muted); 
 }
 .sobreText {
-	color:rgb(255,255,255,0.8);
+	color:var(--muted);
 	text-align: justify;
-	margin-bottom:80px; 
+	margin-top: 30px;
 }
 .sobreText h4 {
 	text-align: center;
+	margin: 30px 0 15px;
+	font-weight: 700;
 }
 
 .tra {
-	background-color: #004213;
-	width:20%;
-	height:3px;  
-	margin-top: 20px;
-	margin-bottom:20px; 
+	background-color: var(--green);
+	width:80px;
+	height:4px;  
+	margin-top: 8px;
+	margin-bottom:24px; 
+	border-radius: 10px;
 }
 
 /*INSCRIÇÕES*/
@@ -99,11 +202,13 @@ header h2 {
 	text-align: center;
 	color:#004213; 
 	margin-bottom:40px; 
-	margin-top:80px; 
 }
 .insImg {
-	width: 900px;
-	margin-bottom:80px; 
+	margin-bottom:40px; 
+}
+.insImg img {
+	max-width: 480px;
+	width: 100%;
 }
 
 /*CIDADE SEDE*/
@@ -114,24 +219,26 @@ header h2 {
 }
 .cityTitle {
 	text-align: center;
-	margin-top:80px; 
-	color: rgb(255,255,255,0.5);
-	margin-bottom: 60px;
+	color: rgb(255,255,255,0.8);
+	margin-bottom: 40px;
+	font-weight: 700;
 }
 .city video {
 	width: 100%;
 	max-width: 1000px;
 	height: auto;
-	margin-bottom:80px; 
+	margin-bottom:20px; 
+	border-radius: 16px;
+	box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
 /*CONTATO*/
 .contato {
 	background-image:url(../images/bg2.png); 
 	background-size: cover;
-	padding-top: 100px;
-	padding-bottom: 100px;
-	
+	padding-top: 90px;
+	padding-bottom: 90px;
+	margin-top: -2px;
 }
 .contEsq {
 	text-align: center;
@@ -148,5 +255,56 @@ header h2 {
 	font-size:20px; 
 	text-align: center;
 	color:#004213;
-	
+
+}
+
+/*LISTS*/
+ol {
+	margin-top: 10px;
+	padding-left: 18px;
+}
+ol li {
+	margin: 6px 0;
+	line-height: 1.5;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 991.98px) {
+	.banner {
+		padding-top: 130px;
+		padding-bottom: 70px;
+	}
+	.hero-card {
+		margin-bottom: 32px;
+	}
+	.hero-card h1 {
+		font-size: 30px;
+	}
+	.navbar {
+		background: linear-gradient(135deg, rgba(0, 66, 19, 0.95), rgba(0, 66, 19, 0.9));
+	}
+	.navbar .nav-link::after {
+		display: none;
+	}
+	section {
+		padding: 60px 0;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.hero-card {
+		padding: 26px;
+	}
+	.btn-sobre {
+		height: 52px;
+		line-height: 52px;
+		width: 100%;
+	}
+	.contEsq, .contDir {
+		font-size: 18px;
+	}
+	.hero-logo {
+		margin-top: 10px;
+		max-width: 420px;
+	}
 }
